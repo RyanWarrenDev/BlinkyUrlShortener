@@ -1,0 +1,44 @@
+﻿@using Blinky.Core.Services;
+@using Blinky.Core.Entities;
+
+@page "/ShortStats"
+
+@inject IShortUrlService urlService;
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-lg-12">
+            <h2>Blinky's URLs <a href="/">Home</a></h2>
+        </div>
+        @foreach (var shortUrl in ShortUrls)
+        {
+            <div class="col-lg-4">
+                <div class="card blinky-shorten-card">
+                    <div class="card-body">
+                        <small>Created:</small>
+                        <h5>@shortUrl.CreatedDate</h5>
+
+                        <small>Short Token:</small>
+                        <h5>@shortUrl.ShortToken</h5>
+
+                        <small>Original Url:</small>
+                        <h5>@shortUrl.OriginalUrl</h5>
+
+                        <small>Clicks:</small>
+                        <h5>@shortUrl.Clicks</h5>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@code {
+    public IEnumerable<ShortUrl> ShortUrls;
+
+    protected override void OnInitialized()
+    {
+        ShortUrls = urlService.GetAllShortUrls();
+        base.OnInitialized();
+    }
+}

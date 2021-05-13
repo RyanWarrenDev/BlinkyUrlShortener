@@ -1,0 +1,35 @@
+﻿@using Blinky.Core.Services;
+@inject IShortUrlService urlService;
+@inject NavigationManager NavManager;
+
+@page "/"
+@page "/{shortToken}"
+
+
+<h1 hidden="@tokenValid">Please wait while we redirect you.</h1>
+<h1 hidden="!@tokenValid">Short Url not recognised.</h1>
+
+@code{
+    [Parameter]
+    public string shortToken { get; set; }
+
+    public bool tokenValid = false;
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (!string.IsNullOrEmpty(shortToken))
+        {
+            var shortUrl = urlService.GetOriginalUrl(shortToken);
+            if (shortUrl != null)
+            {
+                tokenValid = true;
+                urlService.IncrementClick(shortToken);
+                NavManager.NavigateTo(shortUrl, forceLoad: true);
+            }
+        }
+        else
+        {
+            NavManager.NavigateTo("/ShortenUrl");
+        }
+    }
+}

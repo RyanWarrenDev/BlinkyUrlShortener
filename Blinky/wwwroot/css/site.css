@@ -1,0 +1,157 @@
+@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
+
+html, body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+a, .btn-link {
+    color: #0366d6;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+.content {
+    height: 100vh;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.valid.modified:not([type=checkbox]) {
+    outline: 1px solid #26b050;
+}
+
+.invalid {
+    outline: 1px solid red;
+}
+
+.validation-message {
+    color: red;
+}
+
+#blazor-error-ui {
+    background: lightyellow;
+    bottom: 0;
+    box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+    display: none;
+    left: 0;
+    padding: 0.6rem 1.25rem 0.7rem 1.25rem;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+    #blazor-error-ui .dismiss {
+        cursor: pointer;
+        position: absolute;
+        right: 0.75rem;
+        top: 0.5rem;
+    }
+
+.shorten-url {
+    height: 100%;
+    background: url(../img/bg_3.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.blinky-shorten-card {
+    /*min-height: 200px;*/
+    margin-top: 50px;
+    border-radius: 15px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+    .blinky-shorten-card > .card-body{
+        padding: 2rem;
+    }
+
+    .blinky-shorten-card:hover {
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+
+.brand-title {
+    font-size: 3.5rem;
+    color: #07dbf2;
+    font-weight: 600;
+}
+
+.blinky-title{
+    color: #FFF;
+    font-size: 100px;
+    text-transform: uppercase;
+    font-weight: 800;
+}
+
+.blinky-description {
+    color: #FFF;
+    font-size: 25px;
+}
+
+.not-easy {
+    color: #eb0ccd;
+}
+
+.blinky-url-input {
+    height: 50px;
+    padding: 30px;
+    border-radius: 50px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+    -webkit-box-shadow: inset 0 0 4px #eb0ccd, inset 0 0 4px #eb0ccd, inset 0 0 4px #eb0ccd;
+    border: none;
+}
+
+.blinky-button {
+    height: 100%;
+    color: #FFF;
+    border-radius: 50px;
+    background: rgb(149,28,133);
+    background: linear-gradient(31deg, rgba(149,28,133,1) 29%, rgba(228,48,199,1) 65%, rgba(235,12,192,1) 88%);
+}
+
+.created-by {
+    color: #FFF;
+    position: absolute;
+    bottom: 10px;
+}
+
+.heart-icon{
+    color: red;
+}
+
+.short-url {
+    font-size: 2rem;
+    text-align: center;
+    color: #07dbf2;
+}
+
+.short-url-copy {
+    padding: 10px;
+    color: #616060 !important;
+    font-size: 1.3rem;
+    padding: 10px 35px;
+}
+
+.border-gradient {
+    border: 10px solid;
+    border-image-slice: 1;
+    border-width: 3px;
+    border-radius: 50px;
+    border-image-source: linear-gradient(to left, #743ad5, #d53a9d);
+}
+
+.short-stats {
+    color: #FFF;
+    left: 10px;
+    top: 10px;
+    position: absolute;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+}

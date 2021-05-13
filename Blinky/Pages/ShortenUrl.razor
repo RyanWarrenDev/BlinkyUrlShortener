@@ -1,0 +1,69 @@
+﻿@using Blinky.Core.Services;
+
+@page "/ShortenUrl"
+
+@inject IJSRuntime JSRuntime;
+@inject IShortUrlService urlService;
+
+<div class="shorten-url">
+    <a class="short-stats" href="/shortstats">View Stats</a>
+    <div class="container d-flex h-100">
+        <div class="row justify-content-center align-self-center">
+            <div class="col-lg-12 text-center">
+                <h3 class="brand-title">BLINKY</h3>
+                <p class="blinky-title">URL SHORTENER</p>
+                <p class="blinky-description">Take a long URL, make it short, save precious twitter characters and you might even land a job.</p>
+            </div>
+            <div class="col-lg-12">
+                <div class="card blinky-shorten-card">
+                    <div class="card-body">
+                        <h3 class="not-easy font-weight-bold text-center">Turns out it isn't that simple!</h3>
+                        <div class="row mt-4">
+                            <div class="col-lg-9">
+                                <input type="url" class="form-control blinky-url-input" placeholder="Your big ugly URL here" @bind="OriginalUrl">
+                            </div>
+                            <div class="col-lg-3">
+                                <button class="btn btn-block blinky-button" @onclick="GenerateShortUrl">
+                                    <span class="oi oi-link-intact" aria-hidden="true"></span> Shorten
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row mt-4 justify-content-center align-self-center" hidden="@string.IsNullOrEmpty(ShortUrl)">
+                            <div class="col-lg-12 mt-4">
+                                <h3 class="font-weight-bold text-center">Here's your shinny new URL!</h3>
+                            </div>
+                            <div class="col-lg-8 mt-2">
+                                <p class="short-url" data-short="@ShortUrl">@ShortUrl</p>
+                            </div>
+                            <div class="col-lg-4 mt-2 text-left">
+                                <a class="btn short-url-copy border-gradient" @onclick="CopyToClipboard">
+                                    <span class="oi oi-clipboard" aria-hidden="true"></span> Copy to clipboard
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="created-by">
+                <span>Created for <img src="/img/payroc.png" style="width:50px;" /> with <span class="oi oi-heart heart-icon" aria-hidden="true"></span> by Ryan Warren</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    private string OriginalUrl { get; set; }
+
+    private string ShortUrl { get; set; }
+
+    private void GenerateShortUrl()
+    {
+        var shortenedUrl = urlService.GenerateShortUrl(OriginalUrl);
+        ShortUrl = shortenedUrl;
+    }
+
+    private async Task CopyToClipboard()
+    {
+        await JSRuntime.InvokeVoidAsync("Clipboard.copyTo", ShortUrl);
+    }
+}
